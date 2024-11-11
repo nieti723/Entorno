@@ -36,7 +36,7 @@ Funcion cant<-presentacion
 	Escribir "La nómina dependerá de 3 factores:";
 	Escribir "- Categoría profesional (analista / programador)";
 	Escribir "- Horas extra trabajadas en el mes (<50)";
-	Escribir "- Retención IRPF según hijos (sin hijos 21%, de 1 a 2 hijos 18%, 3 o más hijos 10%)";
+	Escribir "- Retención IRPF según hijos (sin hijos 18%, de 1 a 2 hijos 12%, 3 o más hijos 10%)";
 	Escribir "------------------------------------------------------------------------------------------";
 	Escribir "Pulse una tecla para comenzar";
 	Esperar Tecla;
@@ -77,6 +77,15 @@ Funcion datosEmpleados(nombres Por Referencia, datos Por Referencia, cant)
 				Escribir "Error: dato no válido";
 			FinSi
 		Hasta Que datos[i,4]>0
+		si datos[i,4]>2
+			datos[i,4] = 10;
+		SiNo
+			si datos[i,4]>0
+				datos[i,4] = 12; 
+			SiNo
+				datos[i,4] = 18;
+			FinSi
+		FinSi
 	FinPara
 	Escribir "Ya se han cargado los datos, pulse una tecla para continuar";
 	Esperar Tecla;
@@ -112,7 +121,7 @@ Funcion sorteoNavidad(nombres Por Referencia, sueldos Por Referencia, cant)
 	num = azar(cant);
 	Escribir "El empleado ganador es: " nombres[num,0] " " nombres[num,1] " Enhorabuena!!!!";
 	Escribir "--------------------------------------------------";
-	Escribir "Pulse una tecla para volver al men? principal";
+	Escribir "Pulse una tecla para volver al menú principal";
 	Esperar Tecla;
 	Limpiar Pantalla;
 FinFuncion
