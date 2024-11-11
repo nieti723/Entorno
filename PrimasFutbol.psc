@@ -38,7 +38,6 @@ Funcion cant<-presentacion
 	Escribir "Debes cargar los jugadores de tu equipo, partidos convocados, jugados y goles anotados para una liga de 20 jornadas";
 	Escribir "La aplicación te mostrará todos los datos de los jugadores y las primas que le corresponden a cada uno";
 	Escribir "Se deben establecer el número de jugadores y el importe de las primas por partido convocado, goles anotados y la prima para el máximo goleador";
-	Escribir "- Retención IRPF según hijos (sin hijos 18%, de 1 a 2 hijos 12%, 3 o más hijos 10%)";
 	Escribir "------------------------------------------------------------------------------------------";
 	Escribir "Pulse una tecla para comenzar";
 	Esperar Tecla;
@@ -60,6 +59,7 @@ Funcion nombresJugadores(nombres Por Referencia, cant)
 	FinPara
 	Escribir "Nombres cargados, pulse una tecla para volver al menú principal";
 	Esperar Tecla;
+	Limpiar Pantalla;
 FinFuncion
 
 Funcion datosJugadores(nombres Por Referencia, datos Por Referencia, cant)
@@ -108,11 +108,13 @@ Funcion muestraDatos(nombres Por Referencia, datos Por Referencia, cant)
 	Escribir "--------------------------------------------------------------------------------------------------------------";
 	Escribir "Pulse una tecla para volver al menú";
 	Esperar Tecla;
+	Limpiar Pantalla;
 FinFuncion
 
 Funcion primaJugadores(nombres Por Referencia, datos Por Referencia, cant, primaConvocado, primaJugado, primaGol, maxGoleador)
-	Definir i, prima, primaMax Como Entero;
+	Definir i, prima, primaMax, golesMax Como Entero;
 	primaMax = 0;
+	golesMax = 0;
 	Escribir "-                     NÓMINAS DE LOS JUGADORES                   -";
 	Escribir "------------------------------------------------------------------";
 	Escribir "Cada jugador recibe como prima:";
@@ -128,8 +130,9 @@ Funcion primaJugadores(nombres Por Referencia, datos Por Referencia, cant, prima
 		Escribir "--------------------------------------------------------------------------------------------------------------";
 		Escribir "Partidos convocados: " datos[i,0] " | Partidos jugados: " datos[i,1] " | Goles: " datos[i,2];
 		Escribir "Primas del jugador: " prima;
-		si datos[i,2]>primaMax Entonces
+		si datos[i,2]>golesMax Entonces
 			primaMax=i;
+			golesMax = datos[i,2];
 		FinSi
 		Escribir "**************************************************************************************************************";
 	FinPara
